@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\HasRefreshable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class PersonalAccessToken extends Model
+class PersonalAccessToken extends \Laravel\Sanctum\PersonalAccessToken
 {
-    use HasFactory;
+    use HasFactory, HasRefreshable;
 }

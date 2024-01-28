@@ -19,14 +19,12 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
         Route::post(config('sanctum-refresh.sanctum_refresh.routes.urls.login'), 'login')
             ->name('login')
             ->middleware(config('sanctum-refresh.sanctum_refresh.routes.middlewares.login'));
+        Route::post(config('sanctum-refresh.sanctum_refresh.routes.urls.logout'), 'logout')
+            ->name('logout')
+            ->middleware(config('sanctum-refresh.sanctum_refresh.routes.middlewares.logout'));
     }
 
     Route::post(config('sanctum-refresh.sanctum_refresh.routes.urls.refresh'), 'refresh')
         ->name('refresh')
         ->middleware(config('sanctum-refresh.sanctum_refresh.routes.middlewares.refresh'));
 });
-//Route::middleware('auth:sanctum')->group(function (): void {
-//    //dashboard
-//    Route::get('admin/dashboard', [CoreAdminGroup\DashBoardController::class, 'index']);
-//});
-

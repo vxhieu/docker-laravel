@@ -10,7 +10,7 @@ return new class extends Migration {
         if (!Schema::hasTable('refresh_tokens')) {
             Schema::create('refresh_tokens', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId("token_id")->constrained('personal_access_tokens');
+                $table->foreignId("token_id")->constrained('personal_access_tokens')->onDelete('cascade');
                 $table->string('token', 255);
                 $table->timestamp('expires_at')->nullable();
                 $table->timestamps();
@@ -19,6 +19,9 @@ return new class extends Migration {
     }
     public function down(): void
     {
+        Schema::table('refresh_tokens', function (Blueprint $table) {
+            $table->dropForeign(['token_id']);
+        });
         Schema::dropIfExists('refresh_tokens');
     }
 };

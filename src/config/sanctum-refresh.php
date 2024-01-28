@@ -40,6 +40,7 @@ return [
             'urls' => [
                 'login' => '/login',
                 'refresh' => '/refresh',
+                'logout'=>'/logout'
             ],
 
             /**
@@ -48,6 +49,7 @@ return [
              */
             'middlewares' => [
                 'login' => null,
+                'logout' => null,
                 'refresh' => ['checkRefreshToken'],
             ],
         ],

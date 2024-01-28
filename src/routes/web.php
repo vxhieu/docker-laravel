@@ -13,10 +13,6 @@ use App\Http\Controllers\Admin as coreAdminGroup;
 |
 */
 
-Route::controller(coreAdminGroup\AdminController::class)->group(function () {
-    Route::get('/admin', 'index')->name('page.login');
-});
-// Redirect to the dashboard after successful login
-Route::get('/admin/dashboard', function () {
-    return view('themes.OneUI.index');
-})->name('admin.dashboard');
+Route::get('{any?}', function () {
+    return view('admin.signin');
+})->where('any', '.*');

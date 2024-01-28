@@ -4,7 +4,6 @@
  * **/
 $(document).ready(function() {
     $('#signin-button').on('click', function(event) {
-        event.preventDefault(); // Prevent the default form submission
         const LOGIN_ENDPOINT = '/api/auth/login';
         const COOKIE_NAME = 'portal_ecommerce';
         var username = $('#login-username').val();

@@ -8,6 +8,7 @@ use App\Models\RefreshToken;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use App\Services\Contracts\Token;
+use mysql_xdevapi\Exception;
 
 /**
  * @package App\Services
@@ -54,25 +55,21 @@ class TokenIssuer
             throw new InvalidTokenException();
         }
 
-        // Parse the token id
         $tokenId = explode('|', $refreshToken)[0];
 
-        // Find token from given id
         $token = RefreshToken::with('accessToken')
             ->where('expires_at', '>', now())
             ->find($tokenId);
         if (!$token) {
             throw new InvalidTokenException();
         }
-
+        $user = $token->accessToken->tokenable;
         // Regenerate token.
-        dd($token);
-        $newToken = $token->accessToken->tokenable
+        $newToken =$user
             ->createToken($tokenName,
                 $config['abilities'] ?? ['*'],
                 $config['token_expires_at'] ??
                 now()->addMinutes(config('sanctum-refresh.expiration.access_token')));
-
         $plainRefreshToken = Str::random(40);
         $refreshToken = RefreshToken::create([
             'token_id' => $newToken->accessToken->id,
@@ -80,11 +77,31 @@ class TokenIssuer
             'expires_at' => $config['refresh_expires_at'] ??
                 now()->addMinutes(config('sanctum-refresh.expiration.refresh_token')),
         ]);
-
         // Delete current token (revoke refresh token)
         $token->accessToken->delete();
         $token->delete();
 
         return (new Token($newToken, $plainRefreshToken, $refreshToken))->getToken();
+    }
+    public static  function deleteToken(string $refreshToken, string $tokenName = 'web', array $config = []){
+        try {
+            if (!str_contains($refreshToken, '|')) {
+                throw new InvalidTokenException();
+            }
+            $tokenId = explode('|', $refreshToken)[0];
+
+            $token = RefreshToken::with('accessToken')
+                ->where('expires_at', '>', now())
+                ->find($tokenId);
+
+            if ($token) {
+                $token->accessToken->delete();
+                $token->delete();
+                return true;
+            }
+            return false;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

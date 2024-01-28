@@ -1,119 +1,32 @@
 {
-  "resources/fonts/fontawesome/fa-brands-400.ttf": {
-    "file": "assets/fa-brands-400-003f1154.ttf",
-    "src": "resources/fonts/fontawesome/fa-brands-400.ttf"
-  },
-  "resources/fonts/fontawesome/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400-faae6fc0.woff2",
-    "src": "resources/fonts/fontawesome/fa-brands-400.woff2"
-  },
-  "resources/fonts/fontawesome/fa-regular-400.ttf": {
-    "file": "assets/fa-regular-400-7d81a1a7.ttf",
-    "src": "resources/fonts/fontawesome/fa-regular-400.ttf"
-  },
-  "resources/fonts/fontawesome/fa-regular-400.woff2": {
-    "file": "assets/fa-regular-400-9169d8be.woff2",
-    "src": "resources/fonts/fontawesome/fa-regular-400.woff2"
-  },
-  "resources/fonts/fontawesome/fa-solid-900.ttf": {
-    "file": "assets/fa-solid-900-cea79b34.ttf",
-    "src": "resources/fonts/fontawesome/fa-solid-900.ttf"
-  },
-  "resources/fonts/fontawesome/fa-solid-900.woff2": {
-    "file": "assets/fa-solid-900-886c8611.woff2",
-    "src": "resources/fonts/fontawesome/fa-solid-900.woff2"
-  },
-  "resources/fonts/inter/inter-v13-latin-300.woff2": {
-    "file": "assets/inter-v13-latin-300-09eea703.woff2",
-    "src": "resources/fonts/inter/inter-v13-latin-300.woff2"
-  },
-  "resources/fonts/inter/inter-v13-latin-500.woff2": {
-    "file": "assets/inter-v13-latin-500-eebf14ab.woff2",
-    "src": "resources/fonts/inter/inter-v13-latin-500.woff2"
-  },
-  "resources/fonts/inter/inter-v13-latin-600.woff2": {
-    "file": "assets/inter-v13-latin-600-3022fadd.woff2",
-    "src": "resources/fonts/inter/inter-v13-latin-600.woff2"
-  },
-  "resources/fonts/inter/inter-v13-latin-700.woff2": {
-    "file": "assets/inter-v13-latin-700-7b43cb86.woff2",
-    "src": "resources/fonts/inter/inter-v13-latin-700.woff2"
-  },
-  "resources/fonts/inter/inter-v13-latin-800.woff2": {
-    "file": "assets/inter-v13-latin-800-03db2737.woff2",
-    "src": "resources/fonts/inter/inter-v13-latin-800.woff2"
-  },
-  "resources/fonts/inter/inter-v13-latin-900.woff2": {
-    "file": "assets/inter-v13-latin-900-c67b5d31.woff2",
-    "src": "resources/fonts/inter/inter-v13-latin-900.woff2"
-  },
-  "resources/fonts/inter/inter-v13-latin-regular.woff2": {
-    "file": "assets/inter-v13-latin-regular-2301bb03.woff2",
-    "src": "resources/fonts/inter/inter-v13-latin-regular.woff2"
-  },
-  "resources/fonts/simple-line-icons/Simple-Line-Icons.eot": {
-    "file": "assets/Simple-Line-Icons-1c823013.eot",
-    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.eot"
-  },
-  "resources/fonts/simple-line-icons/Simple-Line-Icons.svg": {
-    "file": "assets/Simple-Line-Icons-b381f90a.svg",
-    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.svg"
-  },
-  "resources/fonts/simple-line-icons/Simple-Line-Icons.ttf": {
-    "file": "assets/Simple-Line-Icons-3f501ddb.ttf",
-    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.ttf"
-  },
-  "resources/fonts/simple-line-icons/Simple-Line-Icons.woff": {
-    "file": "assets/Simple-Line-Icons-14b825d7.woff",
-    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.woff"
-  },
-  "resources/fonts/simple-line-icons/Simple-Line-Icons.woff2": {
-    "file": "assets/Simple-Line-Icons-104673f4.woff2",
-    "src": "resources/fonts/simple-line-icons/Simple-Line-Icons.woff2"
-  },
-  "resources/js/app.js": {
-    "file": "assets/app-02317797.js",
+  "resources/css/app.css": {
+    "file": "assets/app-b7B5rivu.css",
     "isEntry": true,
-    "src": "resources/js/app.js"
+    "src": "resources/css/app.css"
   },
-  "resources/js/oneui/app.js": {
-    "file": "assets/app-002b7d9d.js",
-    "isEntry": true,
-    "src": "resources/js/oneui/app.js"
+  "resources/js/components/views/admin/Dashboard.vue": {
+    "file": "assets/Dashboard-f-GR_qAM.js",
+    "imports": [
+      "resources/js/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/views/admin/Dashboard.vue"
   },
-  "resources/js/pages/datatables.js": {
-    "file": "assets/datatables-ad71b457.js",
-    "isEntry": true,
-    "src": "resources/js/pages/datatables.js"
+  "resources/js/components/views/login/Login.vue": {
+    "file": "assets/Login-Stqq3aDj.js",
+    "imports": [
+      "resources/js/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/views/login/Login.vue"
   },
-  "resources/sass/main.scss": {
-    "file": "assets/main-eca6c654.css",
+  "resources/js/main.js": {
+    "dynamicImports": [
+      "resources/js/components/views/login/Login.vue",
+      "resources/js/components/views/admin/Dashboard.vue"
+    ],
+    "file": "assets/main-ZOK_zptf.js",
     "isEntry": true,
-    "src": "resources/sass/main.scss"
-  },
-  "resources/sass/oneui/themes/amethyst.scss": {
-    "file": "assets/amethyst-9e8b5705.css",
-    "isEntry": true,
-    "src": "resources/sass/oneui/themes/amethyst.scss"
-  },
-  "resources/sass/oneui/themes/city.scss": {
-    "file": "assets/city-5ce90fb0.css",
-    "isEntry": true,
-    "src": "resources/sass/oneui/themes/city.scss"
-  },
-  "resources/sass/oneui/themes/flat.scss": {
-    "file": "assets/flat-d9ad80c6.css",
-    "isEntry": true,
-    "src": "resources/sass/oneui/themes/flat.scss"
-  },
-  "resources/sass/oneui/themes/modern.scss": {
-    "file": "assets/modern-65cb6656.css",
-    "isEntry": true,
-    "src": "resources/sass/oneui/themes/modern.scss"
-  },
-  "resources/sass/oneui/themes/smooth.scss": {
-    "file": "assets/smooth-6fc78731.css",
-    "isEntry": true,
-    "src": "resources/sass/oneui/themes/smooth.scss"
+    "src": "resources/js/main.js"
   }
 }
