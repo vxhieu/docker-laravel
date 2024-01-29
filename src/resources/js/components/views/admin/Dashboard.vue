@@ -646,9 +646,6 @@
 
 </template>
 <script>
-import { onMounted ,computed } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
 import TheHeader from "../../layouts/TheHeader.vue";
 import TheFooter from "../../layouts/TheFooter.vue";
 // import {jqueryPlugin} from '/_themes/OneUI/assets/js/oneui.app.min.js';
@@ -659,38 +656,6 @@ export default {
     components:{
         TheHeader,
         TheFooter
-    },
-    setup() {
-        const store = useStore();
-        const router = useRouter();
-        onMounted(() => {
-            const plugin = document.createElement("script");
-            plugin.setAttribute(
-                "src",
-                "http://localhost:8081/_themes/js/pages/be_pages_dashboard_v1.min.js"
-            );
-            plugin.async = true;
-            document.head.appendChild(plugin);
-            try {
-                handleCheckTokenRefresh();
-            } catch (error) {
-                console.log(error);
-            }
-        });
-        function handleLogout() {
-            store.dispatch('auth/logout');
-            router.push({ name: 'login' });
-        }
-
-        function handleCheckTokenRefresh() {
-            store.dispatch('auth/refreshTokens');
-        }
-        const user = computed(() => store.getters['auth/user']);
-        return {
-            handleLogout,
-            handleCheckTokenRefresh,
-            user
-        };
     },
 };
 </script>

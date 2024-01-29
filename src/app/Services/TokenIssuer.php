@@ -93,7 +93,6 @@ class TokenIssuer
             $token = RefreshToken::with('accessToken')
                 ->where('expires_at', '>', now())
                 ->find($tokenId);
-
             if ($token) {
                 $token->accessToken->delete();
                 $token->delete();
@@ -103,5 +102,9 @@ class TokenIssuer
         } catch (Exception $e) {
             return false;
         }
+    }
+    public function getCurrentUser()
+    {
+
     }
 }

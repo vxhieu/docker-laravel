@@ -1,5 +1,6 @@
 import axios from "axios";
 import router from "../router";
+const apiBaseUrl = "/api/auth";
 const state = {
     user: {
         username:''
@@ -16,34 +17,43 @@ const mutations = {
     },
 };
 const actions = {
-    loginUser({ commit }, user) {
-        return axios.post('/api/auth/login', {
-            username: user.name,
-            password: user.password
-        }).then(res => {
-            const token = res.data.token;
-            const username = user.name;
+    async loginUser({ commit }, user) {
+        try {
+            const response = await axios.post(`${apiBaseUrl}/login`, {
+                username: user.name,
+                password: user.password,
+            });
+
+            const { token } = response.data;
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            commit('setUser', { username });
-            router.push({name:'dashboard'});
-        }).catch(error => {
-            console.log(error);
-        })
+
+            commit('setUser', { username: user.name });
+            router.push({ name: 'dashboard' });
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
     },
-    async refreshTokens({ state, commit }) {
-            try {
-                const response = await axios.post('/api/auth/refresh', {
-                    refreshToken: state.refreshToken,
-                });
-                const { accessToken, refreshToken } = response.data;
-                axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-            } catch (error) {
-                router.push({name:'login'});
-            }
+
+    async refreshTokens({ commit }) {
+        try {
+            const response = await axios.post(`${apiBaseUrl}/refresh`);
+            const { token } = response.data;
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        } catch (error) {
+            console.error('Token refresh failed:', error);
+            router.push({ name: 'login' });
+        }
     },
-    async logout({ }) {
-            const response = await axios.post('/api/auth/logout');
+
+    async logout() {
+        try {
+            await axios.post(`${apiBaseUrl}/logout`);
             axios.defaults.headers.common['Authorization'] = '';
+            router.push({ name: 'login' });
+        } catch (error) {
+            console.error('Logout failed:', error);
+            router.push({ name: 'login' });
+        }
     },
 }
 export default {

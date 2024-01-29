@@ -8,6 +8,8 @@ use App\Services\Contracts\Token;
 use App\Services\TokenIssuer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Request;
+
 class AuthController
 {
     /**
@@ -60,5 +62,10 @@ class AuthController
         } else {
             return response()->json(['message' => 'Token not found or expired'], 404);
         }
+    }
+    public function getCurrentUser(Request $request)
+    {
+        $user = auth()->user();
+        return response()->json(['user'=>$user]);
     }
 }

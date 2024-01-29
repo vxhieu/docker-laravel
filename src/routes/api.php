@@ -28,3 +28,8 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
         ->name('refresh')
         ->middleware(config('sanctum-refresh.sanctum_refresh.routes.middlewares.refresh'));
 });
+
+Route::middleware('auth:sanctum')->group(function (): void {
+    //current user
+    Route::get('/user', [AuthController::class, 'getCurrentUser']);
+});
