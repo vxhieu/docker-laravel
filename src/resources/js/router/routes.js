@@ -1,5 +1,6 @@
 const Login = () => import('../components/views/login/Login.vue')
 const DashBoard = () => import('../components/views/admin/Dashboard.vue')
+const  Users = () => import('../components/views/admin/Users.vue')
 export default [
     {
         path: '/admin',
@@ -11,5 +12,9 @@ export default [
         path: '/admin/dashboard',
         component: DashBoard,
         name: 'dashboard',
+    }, {
+        path: '/admin/users',
+        component: Users,
+        name: 'users',
     },
 ];

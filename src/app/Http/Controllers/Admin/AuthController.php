@@ -63,7 +63,7 @@ class AuthController
             return response()->json(['message' => 'Token not found or expired'], 404);
         }
     }
-    public function getCurrentUser(Request $request)
+    public function getCurrentUser()
     {
         $user = auth()->user();
         return response()->json(['user'=>$user]);

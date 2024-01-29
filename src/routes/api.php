@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin as coreAdminGroup;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin as coreAdminGroup;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::prefix('auth')->controller(AuthController::class)->group(function () {
+Route::prefix('auth')->controller(coreAdminGroup\AuthController::class)->group(function () {
     if (!config('sanctum-refresh.sanctum_refresh.routes.refreshOnly')) {
         Route::post(config('sanctum-refresh.sanctum_refresh.routes.urls.login'), 'login')
             ->name('login')
@@ -22,6 +22,9 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
         Route::post(config('sanctum-refresh.sanctum_refresh.routes.urls.logout'), 'logout')
             ->name('logout')
             ->middleware(config('sanctum-refresh.sanctum_refresh.routes.middlewares.logout'));
+//        Route::get('sanctum-refresh.sanctum_refresh.routes.urls.user', 'getCurrentUser')
+//            ->name('user')
+//             ->middleware(config('sanctum-refresh.sanctum_refresh.routes.middlewares.logout'));
     }
 
     Route::post(config('sanctum-refresh.sanctum_refresh.routes.urls.refresh'), 'refresh')
@@ -31,5 +34,8 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
 Route::middleware('auth:sanctum')->group(function (): void {
     //current user
-    Route::get('/user', [AuthController::class, 'getCurrentUser']);
+    Route::get('/user', [coreAdminGroup\AuthController::class, 'getCurrentUser']);
+    Route::controller(coreAdminGroup\UserController::class)->group(function () {
+        Route::resource('users', coreAdminGroup\UserController::class);
+    });
 });
