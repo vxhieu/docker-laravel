@@ -51,7 +51,7 @@
                                 <td class="text-center fs-sm">{{key+1}}</td>
                                 <td class="fw-semibold fs-sm"> {{ item.username }}</td>
                                 <td class="d-none d-sm-table-cell fs-sm">
-                                    client1<span class="text-muted">{{ item.email }}</span>
+                                    <span class="text-muted">{{ item.email }}</span>
                                 </td>
                                 <td class="d-none d-sm-table-cell">
                                     <span

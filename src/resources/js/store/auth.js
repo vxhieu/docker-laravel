@@ -26,7 +26,6 @@ const actions = {
 
             const { token } = response.data;
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
             commit('setUser', { username: user.name });
             router.push({ name: 'dashboard' });
         } catch (error) {

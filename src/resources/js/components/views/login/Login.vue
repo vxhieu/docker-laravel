@@ -1,4 +1,5 @@
 <template>
+    <Skeleton v-if="isLoading"></Skeleton>
     <div id="page-container">
         <main id="main-container">
             <div class="hero-static d-flex align-items-center">
@@ -68,13 +69,18 @@
     </div>
 </template>
 <script>
+import Skeleton from "../../base/skeleton/Skeleton.vue";
 export default {
+    components:{
+        Skeleton
+    },
     data() {
         return {
             user: {
                 name: "",
                 password: "",
             },
+            isLoading:false
         };
     },
     methods :{
@@ -82,6 +88,10 @@ export default {
          * Author:HieuVX - Created Date: 27/01/2024
          */
         handleLogin() {
+            this.isLoading=true;
+            setTimeout(() => {
+                this.isLoading= false;
+            }, 3000);
             this.$store.dispatch('auth/loginUser', this.user);
         },
     }

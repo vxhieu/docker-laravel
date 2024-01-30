@@ -204,6 +204,7 @@ import { useStore } from 'vuex';
 import axios from "../../interceptors/axios.js";
 
 export default {
+
     props: {
         // Define props here if needed
     },
@@ -220,15 +221,15 @@ export default {
         };
 
         onMounted(() => {
-            const plugin = document.createElement("script");
-            plugin.setAttribute(
-                "src",
-                "http://localhost:8081/_themes/js/pages/be_pages_dashboard_v1.min.js"
-            );
-            plugin.async = true;
-            document.head.appendChild(plugin);
+            // const plugin = document.createElement("script");
+            // plugin.setAttribute(
+            //     "src",
+            //     "http://localhost:8081/_themes/js/pages/be_pages_dashboard_v1.min.js"
+            // );
+            // plugin.async = true;
+            // document.head.appendChild(plugin);
             try {
-                handleCheckTokenRefresh();
+                // handleCheckTokenRefresh();
             } catch (error) {
                 console.log(error);
             }
@@ -236,16 +237,21 @@ export default {
         function handleCheckTokenRefresh() {
             store.dispatch('auth/refreshTokens');
         }
+        function  handleGetCurrenUser(){
+
+        }
         return {
             handleLogout,
             isShow,
             showAction,
+
         };
     },
     data(){
       return {
           currentUser: {
-              name:null
+              name:null,
+              isShow:false
           }
       }
     },
@@ -260,7 +266,10 @@ export default {
             }).catch((error)=>{
                 console.log(error)
             })
-        }
+        },
+        showAction(){
+            this.isShow= !this.isShow;
+        },
     }
 };
 </script>
