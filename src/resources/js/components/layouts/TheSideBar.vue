@@ -7,7 +7,7 @@
             <span class="smini-visible">
               <i class="fa fa-circle-notch text-primary"></i>
             </span>
-                <span class="smini-hide fs-5 tracking-wider">OneUI</span>
+                <span class="smini-hide fs-5 tracking-wider"><img class="logo-ecommerce" src="https://dev.sydneyecommerce.com.au/wp-content/uploads/sydney_ecommece_logo_green2.svg" alt="logo"></span>
             </a>
             <!-- END Logo -->
 
@@ -119,3 +119,15 @@
 </template>
 <script setup>
 </script>
+<style scoped>
+ #page-container.sidebar-dark #sidebar .content-header{
+background-color: #3a3a3d!important ;
+}
+.logo-ecommerce{
+    width: 60px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+</style>
