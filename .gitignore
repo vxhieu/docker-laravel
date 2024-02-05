@@ -37,3 +37,4 @@
 
 /src/.php-cs-fixer.cache
 /nbproject/private/
+/src/composer.phar
