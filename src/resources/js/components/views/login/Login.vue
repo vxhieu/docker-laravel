@@ -1,5 +1,5 @@
 <template>
-    <Skeleton v-if="isLoading"></Skeleton>
+<!--    <Skeleton v-if="isLoading"></Skeleton>-->
     <div id="page-container">
         <main id="main-container">
             <div class="hero-static d-flex align-items-center">

@@ -3,14 +3,14 @@
          class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
         <TheSideBar></TheSideBar>
         <TheHeader></TheHeader>
-        <main id="main-container">
+        <main id="main-container" class="main-wrap">
             <!-- Hero -->
             <div class="bg-body-light">
                 <div class="content content-full">
                     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                         <div class="flex-grow-1">
                             <h1 class="h3 fw-bold mb-1">
-                              Table List User
+                                Table List User
                             </h1>
                         </div>
                         <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -43,22 +43,34 @@
                                 <th class="text-center" style="width: 80px;">ID</th>
                                 <th>Name</th>
                                 <th class="d-none d-sm-table-cell" style="width: 50%;">Email</th>
-                                <th style="width: 15%;">Registered</th>
+                                <th style="width: 15%;">Roles</th>
+                                <th class="text-center" style="width: 100px;">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr v-for="(item, key) in this.listUsers" :key="key">
-                                <td class="text-center fs-sm">{{key+1}}</td>
+                                <td class="text-center fs-sm">{{ key + 1 }}</td>
                                 <td class="fw-semibold fs-sm"> {{ item.username }}</td>
                                 <td class="d-none d-sm-table-cell fs-sm">
                                     <span class="text-muted">{{ item.email }}</span>
                                 </td>
                                 <td class="d-none d-sm-table-cell">
                                     <span
-                                        class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Business</span>
+                                        class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{
+                                            roles[key]
+                                        }}</span>
                                 </td>
-                                <td>
-                                    <span class="text-muted fs-sm">5 days ago</span>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" @click="isShow=true"
+                                                data-bs-toggle="tooltip" title="Edit">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-alt-secondary"
+                                                data-bs-toggle="tooltip" title="Delete">
+                                            <i class="fa fa-fw fa-times"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
@@ -67,6 +79,10 @@
                 </div>
             </div>
             <!-- END Page Content -->
+            <UsersForm
+                v-if="isShow"
+                @closeForm="closeForm"
+            />
         </main>
         <TheFooter></TheFooter>
     </div>
@@ -75,17 +91,22 @@
 import TheHeader from "../../layouts/TheHeader.vue";
 import TheSideBar from "../../layouts/TheSideBar.vue";
 import TheFooter from "../../layouts/TheFooter.vue";
+import UsersForm from "../admin/UsersForm.vue"
 import axios from "axios";
+
 export default {
     name: 'Users',
     components: {
         TheHeader,
         TheSideBar,
-        TheFooter
+        TheFooter,
+        UsersForm
     },
     data() {
         return {
             listUsers: {},
+            roles: [],
+            isShow: false,
         }
     },
     created() {
@@ -94,13 +115,27 @@ export default {
     methods: {
         fetchDataUser() {
             axios.get('/api/users').then((response) => {
-                console.log(response);
-                this.listUsers = response.data.listUser;
+                const {listUser, roles} = response.data;
+                this.listUsers = listUser;
+                this.roles = roles;
             }).catch((error) => {
                 console.log("error", error)
             })
-        }
+        },
+        /** Handle click button close form */
+        closeForm() {
+            this.isShow = false;
+        },
+        changeIsShow() {
+            this.isShow = true;
+        },
     }
 
 };
 </script>
+<style scoped>
+.main-wrap {
+    position: relative;
+    z-index: 1;
+}
+</style>

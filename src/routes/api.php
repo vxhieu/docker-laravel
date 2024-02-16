@@ -35,7 +35,8 @@ Route::prefix('auth')->controller(coreAdminGroup\AuthController::class)->group(f
 Route::middleware('auth:sanctum')->group(function (): void {
     //current user
     Route::get('/user', [coreAdminGroup\AuthController::class, 'getCurrentUser']);
-    Route::controller(coreAdminGroup\UserController::class)->group(function () {
-        Route::resource('users', coreAdminGroup\UserController::class);
-    });
+    Route::resources([
+        'roles' => coreAdminGroup\RoleController::class,
+        'users' => coreAdminGroup\UserController::class,
+    ]);
 });
