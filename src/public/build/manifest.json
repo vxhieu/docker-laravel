@@ -1,19 +1,54 @@
 {
+  "_TheSideBar-!~{007}~.js": {
+    "file": "assets/TheSideBar-gHJry_qF.css",
+    "src": "_TheSideBar-!~{007}~.js"
+  },
+  "_TheSideBar-C0trbwTo.js": {
+    "css": [
+      "assets/TheSideBar-gHJry_qF.css"
+    ],
+    "file": "assets/TheSideBar-C0trbwTo.js",
+    "imports": [
+      "resources/js/main.js"
+    ]
+  },
   "resources/css/app.css": {
     "file": "assets/app-b7B5rivu.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/components/views/admin/Dashboard.vue": {
-    "file": "assets/Dashboard-f-GR_qAM.js",
+    "file": "assets/Dashboard-RyJ0n64e.js",
     "imports": [
+      "_TheSideBar-C0trbwTo.js",
       "resources/js/main.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/views/admin/Dashboard.vue"
   },
+  "resources/js/components/views/admin/Sites.vue": {
+    "file": "assets/Sites-YjHPU9SR.js",
+    "imports": [
+      "_TheSideBar-C0trbwTo.js",
+      "resources/js/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/views/admin/Sites.vue"
+  },
+  "resources/js/components/views/admin/Users.vue": {
+    "file": "assets/Users-4ukoIHPf.js",
+    "imports": [
+      "_TheSideBar-C0trbwTo.js",
+      "resources/js/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/views/admin/Users.vue"
+  },
   "resources/js/components/views/login/Login.vue": {
-    "file": "assets/Login-Stqq3aDj.js",
+    "css": [
+      "assets/Login-kXSVjd0N.css"
+    ],
+    "file": "assets/Login-f1oYyGtc.js",
     "imports": [
       "resources/js/main.js"
     ],
@@ -23,9 +58,11 @@
   "resources/js/main.js": {
     "dynamicImports": [
       "resources/js/components/views/login/Login.vue",
-      "resources/js/components/views/admin/Dashboard.vue"
+      "resources/js/components/views/admin/Dashboard.vue",
+      "resources/js/components/views/admin/Users.vue",
+      "resources/js/components/views/admin/Sites.vue"
     ],
-    "file": "assets/main-ZOK_zptf.js",
+    "file": "assets/main-vAkCRR3l.js",
     "isEntry": true,
     "src": "resources/js/main.js"
   }

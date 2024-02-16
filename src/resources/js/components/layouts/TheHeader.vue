@@ -55,6 +55,9 @@
                                 <span class="fs-sm fw-medium">Profile</span>
                                 <span class="badge rounded-pill bg-primary ms-2">1</span>
                             </a>
+                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="/admin/sites">
+                                <span class="fs-sm fw-medium">Sites</span>
+                            </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
                                 <span class="fs-sm fw-medium">Settings</span>
                             </a>
