@@ -29,11 +29,11 @@
             <!-- END Hero -->
 
             <!-- Page Content -->
-            <div class="content">
+            <div class="content table-list-sites">
                 <!-- Dynamic Table Full -->
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <router-link :to="{ name: 'sites.create' }" class="text-sm font-medium">Add New Site</router-link>
+                        <router-link :to="{ name: 'sites.create' }" class="text-sm font-small title-header">Add New Site</router-link>
                     </div>
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
@@ -52,7 +52,7 @@
                                 <td class="d-none d-sm-table-cell fs-sm">{{ item.domain }}</td>
                                 <td class="d-none d-sm-table-cell fs-sm">{{ item.cms_type }}</td>
                                 <td class="d-none d-sm-table-cell fs-sm">
-                                    <router-link :to="{ name: 'sites.update', params: { id: item.id } }" class="btn btn-success">Edit</router-link>
+                                    <router-link :to="{ name: 'sites.update', params: { id: item.id } }" class="text-sm edit-action"><i class="fa fa-edit" style="font-size:20px"></i></router-link>
                                 </td>
                             </tr>
                             </tbody>
@@ -99,3 +99,16 @@ export default {
 
 };
 </script>
+<style scoped>
+#main-container .table-list-sites .block-header a.title-header {
+    border: 1px solid #006c5b;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    background: #006c5b;
+    font-size: 14px;
+}
+a.edit-action i {
+    color: #006c5b;
+}
+</style>
