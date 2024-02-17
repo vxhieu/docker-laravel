@@ -33,7 +33,7 @@
                 <!-- Dynamic Table Full -->
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <button class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">Add New Site</button>
+                        <router-link :to="{ name: 'sites.create' }" class="text-sm font-medium">Add New Site</router-link>
                     </div>
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
@@ -47,14 +47,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(item, key) in this.listSites" :key="key">
+                            <tr v-for="(item, key) in this.sites" :key="key">
                                 <td class="d-none d-sm-table-cell fs-sm">{{ item.name }}</td>
                                 <td class="d-none d-sm-table-cell fs-sm">{{ item.domain }}</td>
                                 <td class="d-none d-sm-table-cell fs-sm">{{ item.cms_type }}</td>
                                 <td class="d-none d-sm-table-cell fs-sm">
-                                    <a class="icon" href="javascript:void(0)">
-                                        <i class="fe fe-edit"></i>
-                                    </a>
+                                    <router-link :to="{ name: 'sites.update', params: { id: item.id } }" class="btn btn-success">Edit</router-link>
                                 </td>
                             </tr>
                             </tbody>
@@ -68,12 +66,13 @@
     </div>
 </template>
 <script>
-import TheHeader from "../../layouts/TheHeader.vue";
-import TheSideBar from "../../layouts/TheSideBar.vue";
-import TheFooter from "../../layouts/TheFooter.vue";
+import TheHeader from "../../../layouts/TheHeader.vue";
+import TheSideBar from "../../../layouts/TheSideBar.vue";
+import TheFooter from "../../../layouts/TheFooter.vue";
 import axios from "axios";
+
 export default {
-    name: 'Sites',
+    name: 'sites',
     components: {
         TheHeader,
         TheSideBar,
@@ -81,17 +80,17 @@ export default {
     },
     data() {
         return {
-            listSites: {},
+            sites: {},
         }
     },
     created() {
-        this.fetchDataUser();
+        this.fetchDataSites();
     },
     methods: {
-        fetchDataUser() {
+        fetchDataSites() {
             axios.get('/api/sites').then((response) => {
                 console.log(response);
-                this.listSites = response.data.listSites;
+                this.sites = response.data.sites;
             }).catch((error) => {
                 console.log("error", error)
             })

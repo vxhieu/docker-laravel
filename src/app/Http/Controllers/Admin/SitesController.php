@@ -8,7 +8,7 @@ use App\Models\Sites;
 
 /**
  * @package App\Http\Controllers\Admin
- * Author:HieuVx - Created Date: 29/01/2024
+ * Author:HaHoang - Created Date: 06/02/2024
  */
 class SitesController extends Controller
 {
@@ -25,13 +25,43 @@ class SitesController extends Controller
         $this->sites = $sites;
     }
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function index()
     {
+        //$user = auth()->user();
         $user_id = 1;
-        $listSites = $this->sites->where('user_id', $user_id)->get();
-        return response()->json(['listSites' => $listSites]);
+        //var_dump($user); die;
+        $sites = $this->sites->where('user_id', $user_id)->get();
+        return response()->json(['sites' => $sites]);
+    }
+
+    public function store(Request $request)
+    {
+        $site = new Sites([
+            'user_id' => 1,
+            'name' => $request->input('name'),
+            'site_type' => $request->input('site_type'),
+            'domain' => $request->input('domain'),
+            'admin_url' => $request->input('admin_url'),
+            'cms_type' => $request->input('cms_type')
+        ]);
+        $site->save();
+        return response()->json('Sites created!');
+    }
+    public function show($id)
+    {
+        $site = Sites::find($id);
+        return response()->json($site);
+    }
+    public function update($id, Request $request)
+    {
+        $site = Sites::find($id);
+        $site->update($request->all());
+        return response()->json('Sites updated!');
+    }
+    public function destroy($id)
+    {
+        $site = Sites::find($id);
+        $site->delete();
+        return response()->json('Sites deleted!');
     }
 }

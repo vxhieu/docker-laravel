@@ -40,3 +40,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
         'users' => coreAdminGroup\UserController::class,
     ]);
 });
+
+Route::middleware('api')->group(function () {
+    Route::resource('sites', coreAdminGroup\SitesController::class);
+});

@@ -1,13 +1,31 @@
 {
-  "_TheSideBar-!~{007}~.js": {
+  "_TheSideBar-!~{009}~.js": {
     "file": "assets/TheSideBar-gHJry_qF.css",
-    "src": "_TheSideBar-!~{007}~.js"
+    "src": "_TheSideBar-!~{009}~.js"
   },
-  "_TheSideBar-C0trbwTo.js": {
+  "_TheSideBar-eqEnnZZe.js": {
     "css": [
       "assets/TheSideBar-gHJry_qF.css"
     ],
-    "file": "assets/TheSideBar-C0trbwTo.js",
+    "file": "assets/TheSideBar-eqEnnZZe.js",
+    "imports": [
+      "resources/js/main.js"
+    ]
+  },
+  "_TheSideBar-oLBzd5av.js": {
+    "css": [
+      "assets/TheSideBar-gHJry_qF.css"
+    ],
+    "file": "assets/TheSideBar-oLBzd5av.js",
+    "imports": [
+      "resources/js/main.js"
+    ]
+  },
+  "_TheSideBar-pd6FI06g.js": {
+    "css": [
+      "assets/TheSideBar-gHJry_qF.css"
+    ],
+    "file": "assets/TheSideBar-pd6FI06g.js",
     "imports": [
       "resources/js/main.js"
     ]
@@ -18,37 +36,58 @@
     "src": "resources/css/app.css"
   },
   "resources/js/components/views/admin/Dashboard.vue": {
-    "file": "assets/Dashboard-RyJ0n64e.js",
+    "file": "assets/Dashboard-2-S_CiFm.js",
     "imports": [
-      "_TheSideBar-C0trbwTo.js",
+      "_TheSideBar-eqEnnZZe.js",
       "resources/js/main.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/views/admin/Dashboard.vue"
   },
-  "resources/js/components/views/admin/Sites.vue": {
-    "file": "assets/Sites-YjHPU9SR.js",
-    "imports": [
-      "_TheSideBar-C0trbwTo.js",
-      "resources/js/main.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/components/views/admin/Sites.vue"
-  },
   "resources/js/components/views/admin/Users.vue": {
-    "file": "assets/Users-4ukoIHPf.js",
+    "css": [
+      "assets/Users-TxYfSjUi.css"
+    ],
+    "file": "assets/Users-juN3iVsv.js",
     "imports": [
-      "_TheSideBar-C0trbwTo.js",
+      "_TheSideBar-eqEnnZZe.js",
       "resources/js/main.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/components/views/admin/Users.vue"
   },
+  "resources/js/components/views/admin/sites/Add.vue": {
+    "file": "assets/Add-1Ha10ejR.js",
+    "imports": [
+      "_TheSideBar-eqEnnZZe.js",
+      "resources/js/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/views/admin/sites/Add.vue"
+  },
+  "resources/js/components/views/admin/sites/Edit.vue": {
+    "file": "assets/Edit-KxqUYJdT.js",
+    "imports": [
+      "_TheSideBar-eqEnnZZe.js",
+      "resources/js/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/views/admin/sites/Edit.vue"
+  },
+  "resources/js/components/views/admin/sites/Index.vue": {
+    "file": "assets/Index-9O8SpefK.js",
+    "imports": [
+      "_TheSideBar-eqEnnZZe.js",
+      "resources/js/main.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/views/admin/sites/Index.vue"
+  },
   "resources/js/components/views/login/Login.vue": {
     "css": [
       "assets/Login-kXSVjd0N.css"
     ],
-    "file": "assets/Login-f1oYyGtc.js",
+    "file": "assets/Login-nwsnbnEw.js",
     "imports": [
       "resources/js/main.js"
     ],
@@ -60,9 +99,11 @@
       "resources/js/components/views/login/Login.vue",
       "resources/js/components/views/admin/Dashboard.vue",
       "resources/js/components/views/admin/Users.vue",
-      "resources/js/components/views/admin/Sites.vue"
+      "resources/js/components/views/admin/sites/Index.vue",
+      "resources/js/components/views/admin/sites/Add.vue",
+      "resources/js/components/views/admin/sites/Edit.vue"
     ],
-    "file": "assets/main-vAkCRR3l.js",
+    "file": "assets/main-d8bG_wTd.js",
     "isEntry": true,
     "src": "resources/js/main.js"
   }
