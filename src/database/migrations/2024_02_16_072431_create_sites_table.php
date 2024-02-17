@@ -10,7 +10,7 @@ return new class extends Migration {
         if (!Schema::hasTable('sites')) {
             Schema::create('sites', function (Blueprint $table) {
                 $table->id();
-                $table->integer('user_id')->unsigned();
+                $table->bigInteger('user_id')->unsigned();
                 $table->string('name', 255);
                 $table->enum('site_type',['development', 'staging', 'production']);
                 $table->string('domain', 255);
