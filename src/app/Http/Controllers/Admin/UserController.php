@@ -38,13 +38,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $listUser = $this->user->select(['username', 'email'])->get();
-        $role = $this->roles->pluck('name')->all();
-        $userRole = $this->user->roles->pluck('name')->all();
-        return response()->json(['listUser' => $listUser,
-            'roles' => $role,
-            'userRole' => $userRole
-        ]);
+        $listUser = $this->user->with(['roles:id,name'])->get();
+        return response()->json(['listUser'=>$listUser]);
     }
 
     /**
@@ -78,9 +73,17 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $user = $this->user->find($id);
+        $userRoles = $user->roles->pluck('name')->all();
+        $roles = $this->roles->pluck('name')->all();
+
+        return response()->json([
+            "user" => $user,
+            "userRoles" => $userRoles,
+            "roles" => $roles
+        ]);
     }
 
     /**

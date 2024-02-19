@@ -48,8 +48,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(item, key) in this.listUsers" :key="key">
-                                <td class="text-center fs-sm">{{ key + 1 }}</td>
+                            <tr v-for="(item) in this.listUsers" :key="item.id">
+                                <td class="text-center fs-sm">{{ item.id }}</td>
                                 <td class="fw-semibold fs-sm"> {{ item.username }}</td>
                                 <td class="d-none d-sm-table-cell fs-sm">
                                     <span class="text-muted">{{ item.email }}</span>
@@ -57,12 +57,12 @@
                                 <td class="d-none d-sm-table-cell">
                                     <span
                                         class="fs-xs fw-semibold d-inline-block py-1 px-3 rounded-pill bg-info-light text-info">{{
-                                            roles[key]
+                                        item.roles[0].name
                                         }}</span>
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" @click="isShow=true"
+                                        <button type="button" class="btn btn-sm btn-alt-secondary"  @click="handleEditUser(item.id)"
                                                 data-bs-toggle="tooltip" title="Edit">
                                             <i class="fa fa-fw fa-pencil-alt"></i>
                                         </button>
@@ -82,6 +82,7 @@
             <UsersForm
                 v-if="isShow"
                 @closeForm="closeForm"
+                :userEdit="this.userEdit"
             />
         </main>
         <TheFooter></TheFooter>
@@ -105,8 +106,8 @@ export default {
     data() {
         return {
             listUsers: {},
-            roles: [],
             isShow: false,
+            userEdit:[]
         }
     },
     created() {
@@ -115,9 +116,8 @@ export default {
     methods: {
         fetchDataUser() {
             axios.get('/api/users').then((response) => {
-                const {listUser, roles} = response.data;
+                const {listUser} = response.data;
                 this.listUsers = listUser;
-                this.roles = roles;
             }).catch((error) => {
                 console.log("error", error)
             })
@@ -129,6 +129,16 @@ export default {
         changeIsShow() {
             this.isShow = true;
         },
+        handleEditUser(id){
+            this.isShow= true;
+            axios.get(`/api/users/${id}`).then((response) => {
+                console.log(response.data);
+                this.userEdit = { ...response.data };
+                console.log("user edit",this.userEdit);
+            }).catch((error) => {
+                console.log("error", error)
+            })
+        }
     }
 
 };

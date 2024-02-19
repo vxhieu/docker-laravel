@@ -22,29 +22,26 @@
                             <div class="mb-4">
                                 <label class="form-label" for="block-form1-username">Username</label>
                                 <input type="text" class="form-control form-control-alt" id="block-form1-username"
+                                       v-model="this.userEdit.username"
                                        name="block-form1-username" placeholder="Enter your username..">
+                                {{this.userEdit.userRoles[0]}}
+                            </div>
+<!--                            <div class="mb-4">-->
+<!--                                <label class="form-label" for="block-form1-password">Password</label>-->
+<!--                                <input type="password" class="form-control form-control-alt"-->
+<!--                                       id="block-form1-password" name="block-form1-password"-->
+<!--                                       placeholder="Enter your password..">-->
+<!--                            </div>-->
+                            <div class="mb-4">
+                                <label class="form-label" for="val-email">Email <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="val-email" name="val-email"
+                                       v-model="this.userEdit.email"
+                                       placeholder="Your valid email..">
                             </div>
                             <div class="mb-4">
-                                <label class="form-label" for="block-form1-password">Password</label>
-                                <input type="password" class="form-control form-control-alt"
-                                       id="block-form1-password" name="block-form1-password"
-                                       placeholder="Enter your password..">
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label" for="val-select2-multiple">Select2 Multiple <span class="text-danger">*</span></label>
-                                <select class="js-select2 form-select" id="val-select2-multiple" name="val-select2-multiple" style="width: 100%;" data-placeholder="Choose at least two.." multiple>
-                                    <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                    <option value="html">HTML</option>
-                                    <option value="css">CSS</option>
-                                    <option value="javascript">JavaScript</option>
-                                    <option value="angular">Angular</option>
-                                    <option value="react">React</option>
-                                    <option value="vuejs">Vue.js</option>
-                                    <option value="ruby">Ruby</option>
-                                    <option value="php">PHP</option>
-                                    <option value="asp">ASP.NET</option>
-                                    <option value="python">Python</option>
-                                    <option value="mysql">MySQL</option>
+                                <label class="form-label" >Roles <span class="text-danger">*</span></label>
+                                <select class="form-select" v-model="userEdit.userRoles[0]" name="roles">
+                                    <option v-for="role in this.userData.roleList" :key="role" :value="role">{{ role }}</option>
                                 </select>
                             </div>
                             <div class="mb-4">
@@ -61,9 +58,33 @@
             </div>
         </div>
     </div>
+    {{this.userData}}
 </template>
-<script setup>
+<script>
+export default {
+    props: {
+        userEdit: {},
+    },
+    data() {
+        return {
+            userData: {
+                userInfo: this.userEdit.user,
+                roleList: this.userEdit.roles,
+                userRoles: this.userEdit.userRoles
+            }
+        };
+    },
+    mounted() {
+        console.log("watch", this.userEdit);
+    }
+};
 </script>
+
+<UsersForm
+    v-if="isShow"
+    @closeForm="closeForm"
+    :userEdit="userEdit"
+/>
 <style scoped>
 .user-wrap{
     height: 100vh;
