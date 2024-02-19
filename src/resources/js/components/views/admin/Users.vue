@@ -30,10 +30,14 @@
 
             <!-- Page Content -->
             <div class="content">
-                <!-- Dynamic Table Full -->
+
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Dynamic Table <small>Full</small></h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option me-2"  @click="handleAddUser">
+                                <i class="fa fa-plus me-1"></i> Create New User
+                            </button>
+                        </div>
                     </div>
                     <div class="block-content block-content-full">
                         <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
@@ -82,7 +86,9 @@
             <UsersForm
                 v-if="isShow"
                 @closeForm="closeForm"
+                @handleBtnClose="handleBtnClose"
                 :userEdit="this.userEdit"
+                :editing="this.isEdit"
             />
         </main>
         <TheFooter></TheFooter>
@@ -107,7 +113,8 @@ export default {
         return {
             listUsers: {},
             isShow: false,
-            userEdit:[]
+            userEdit:[],
+            isEdit:false
         }
     },
     created() {
@@ -123,21 +130,28 @@ export default {
             })
         },
         /** Handle click button close form */
-        closeForm() {
+        handleBtnClose(){
             this.isShow = false;
         },
-        changeIsShow() {
-            this.isShow = true;
+        /** Handle after update form */
+        closeForm() {
+            this.isShow = false;
+            this.fetchDataUser();
         },
+        /** Handle Edit User */
         handleEditUser(id){
             this.isShow= true;
+            this.isEdit= true;
             axios.get(`/api/users/${id}`).then((response) => {
-                console.log(response.data);
                 this.userEdit = { ...response.data };
-                console.log("user edit",this.userEdit);
             }).catch((error) => {
                 console.log("error", error)
             })
+        },
+        /** Handle add new user*/
+        handleAddUser(){
+            this.isShow=true;
+            this.isEdit= false;
         }
     }
 

@@ -97,7 +97,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
         try {
             DB::beginTransaction();
@@ -107,9 +107,9 @@ class UserController extends Controller
             } else {
                 $input = $request->except('password');
             }
-            $this->user->update($input);
-
-            $this->user->syncRoles($request->roles);
+            $user=$this->user->findOrFail($id);
+            $user->update($input);
+            $user->syncRoles($request->roles);
             DB::commit();
             return response()->json(['message' => 'User is updated successfully.']);
         } catch (\Exception $e) {
